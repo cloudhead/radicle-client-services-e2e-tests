@@ -20,15 +20,15 @@ jobs:
         run: sudo apt-get install -y pkg-config libudev-dev
       - uses: actions/checkout@v2
         with:
-          repository: radicle-dev/radicle-client-services
-          ref: refs/heads/master
+          submodules: recursive
       - uses: actions-rs/toolchain@v1
         with:
+          toolchain: nightly-2021-06-17
           profile: minimal
-      # - name: Build
-      #   run: cargo build --all-features --package=radicle-org-node
-      #   env:
-      #     RUSTFLAGS: -D warnings
+      - name: Build
+        run: cd radicle-client-services && cargo build --all-features --package=radicle-org-node
+        env:
+          RUSTFLAGS: -D warnings
       - uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
@@ -36,8 +36,6 @@ jobs:
         uses: abatilo/actions-poetry@v2.0.0
         with:
           poetry-version: ${{ matrix.poetry-version }}
-      - name: ls
-        run: ls -l
       - name: Install Python dependencies
         run: poetry install
       - name: Run tests

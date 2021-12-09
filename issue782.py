@@ -156,7 +156,7 @@ async def async_main(org_node_executable_path: pathlib.Path, workdir_path: pathl
 
 
 def main():
-    org_node_executable_path = pathlib.Path(__file__).parent.parent.absolute().joinpath('target/debug/radicle-org-node')
+    org_node_executable_path = pathlib.Path(__file__).parent.absolute().joinpath('radicle-client-services/target/debug/radicle-org-node')
     workdir_path = pathlib.Path(__file__).parent.joinpath('input').absolute()
     trio.run(async_main, org_node_executable_path, workdir_path)
 

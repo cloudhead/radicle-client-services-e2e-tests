@@ -1,0 +1,3 @@
+[submodule "radicle-client-services"]
+	path = radicle-client-services
+	url = https://github.com/radicle-dev/radicle-client-services.git
